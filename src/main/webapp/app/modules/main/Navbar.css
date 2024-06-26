@@ -1,0 +1,32 @@
+#myNavbar {
+    background-color: #F5C764 !important;
+    border-bottom: 2.5px solid #210124 !important;
+}
+
+#myNavbar .navbar-brand {
+    color: #210124 !important;
+    font-weight: 800 !important;
+    font-size: x-large !important;
+    text-shadow: 2px 2px 4px #ffda9f !important;
+}
+
+#myNavbar .navbar-text {
+    color: #210124 !important;
+    font-weight: 300 !important;
+    font-size: medium !important;
+    font-style: italic !important;
+}
+
+#goBackButton {
+    background-color: #210124 !important;
+    color: whitesmoke !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#goBackButton:hover {
+    background-color: #6e0378 !important;
+    color: whitesmoke !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}

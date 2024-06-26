@@ -1,0 +1,65 @@
+#orderItemCard {
+    background-color: #ed6b5a6e !important;
+    border: 2px solid #210124 !important;
+    color: #210124 !important;
+    box-shadow: 2px 2px 3px #210124 !important;
+    border-radius: 0.25rem !important;
+}
+
+#orderItemCard .card-img-top {
+    background-color: #ed6b5a8a;
+    border-bottom: 0.15rem solid #210124;
+    width: 298px;
+    height: 298px;
+}
+
+#orderItemCard .card-title {
+    color: #210124 !important;
+    font-weight: 700 !important;
+}
+
+.tab-content .tab-pane {
+  margin-top: 3rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+ }
+
+#price {
+    color: #210124 !important;
+    font-weight: 600 !important;
+    font-style: oblique !important;
+}
+
+#plusButton {
+    background-color: #ed6b5a9e !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#plusButton:hover {
+    background-color: #ed6b5ac9 !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#minusButton {
+    background-color: #ed6b5a9e !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#minusButton:hover {
+    background-color: #ed6b5ac9 !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#counter {
+    color: #210124 !important;
+    font-weight: 700 !important;
+    margin-top: 0.25rem;
+}

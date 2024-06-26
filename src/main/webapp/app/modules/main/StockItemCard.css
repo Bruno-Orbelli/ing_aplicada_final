@@ -1,0 +1,45 @@
+#stockItemCard {
+    background-color: #ed6b5a6e !important;
+    border: 2px solid #210124 !important;
+    color: #210124 !important;
+    box-shadow: 2px 2px 3px #210124 !important;
+    border-radius: 0.25rem !important;
+}
+
+#stockItemCard .card-img-top {
+    background-color: #ed6b5a8a;
+    border-bottom: 0.15rem solid #210124;
+    width: 298px;
+    height: 298px;
+}
+
+#stockItemCard .card-title {
+    color: #210124 !important;
+    font-weight: 700 !important;
+}
+
+#price {
+    color: #210124 !important;
+    font-weight: 600 !important;
+    font-style: oblique !important;
+}
+
+#plusButton {
+    background-color: #ed6b5a9e !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#minusButton {
+    background-color: #ed6b5a9e !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#counter {
+    color: #210124 !important;
+    font-weight: 700 !important;
+    margin-top: 0.25rem;
+}

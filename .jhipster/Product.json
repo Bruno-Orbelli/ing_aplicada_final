@@ -1,0 +1,33 @@
+{
+  "changelogDate": "20240624193414",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "productName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "stock",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "Product",
+  "pagination": "no",
+  "relationships": [
+    {
+      "otherEntityName": "orderDet",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "orderDetails",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

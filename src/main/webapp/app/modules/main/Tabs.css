@@ -1,0 +1,75 @@
+#mainPage {
+    color: black;
+    background-color: #ffeab0 !important;
+}
+
+#navTabs .nav-item {
+    cursor: pointer;
+}
+
+#navTabs .nav-item:hover {
+    color: var(--primary);
+}
+
+#navTabs {
+    color: #210124 !important;
+    background-color: #eda15a8b !important;
+    border-radius: 0.25rem;
+    border-color: transparent !important;
+    margin-left: 47.60rem;
+    margin-right: 47.60rem;
+}
+
+#navTabs .nav-link {
+    color: #210124 !important;
+}
+
+#navTabs .nav-link:hover {
+    color: #210124 !important;
+    background-color: #eda15aad !important;
+    border-top: transparent !important;
+    border-bottom: #210124 !important;
+    border-left: transparent !important;
+    border-right: transparent !important;
+    border-radius: 0.25rem;
+}
+
+#navTabs .nav-link.active {
+    color: #210124 !important;
+    font-weight: 600 !important;
+    background-color: #eda15aad !important;
+    border-radius: 0.25rem;
+    border-color: transparent !important;
+}
+
+#navTabs .nav-link:focus {
+    color: #210124 !important;
+    font-weight: 600 !important;
+    background-color: #eda15aad !important;
+    border-radius: 0.25rem;
+    border-bottom: #210124 !important;
+    border-top: transparent !important;
+    border-left: transparent !important;
+    border-right: transparent !important;
+}
+
+#navTabs .tab-pane {
+    margin-top: 3rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+#confirmationButton {
+    background-color: #ed6b5a9e !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
+#confirmationButton:hover {
+    background-color: #ed6b5ac0 !important;
+    color: #210124 !important;
+    font-weight: 600 !important;
+    border-color: transparent !important;
+}
+
