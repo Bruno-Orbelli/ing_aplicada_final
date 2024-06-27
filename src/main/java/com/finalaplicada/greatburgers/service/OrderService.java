@@ -3,13 +3,13 @@ package com.finalaplicada.greatburgers.service;
 import com.finalaplicada.greatburgers.domain.Order;
 import com.finalaplicada.greatburgers.domain.OrderDet;
 import com.finalaplicada.greatburgers.domain.Product;
-import com.finalaplicada.greatburgers.repository.OrderRepository;
 import com.finalaplicada.greatburgers.repository.OrderDetRepository;
+import com.finalaplicada.greatburgers.repository.OrderRepository;
 import com.finalaplicada.greatburgers.repository.ProductRepository;
-import java.util.List;
-import java.util.Set;
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -42,14 +42,19 @@ public class OrderService {
      */
     public Order save(Order order, Set<OrderDet> orderDetails) {
         log.debug("Request to save Order : {} with OrderDetails : {}", order, orderDetails);
-        order.setOrderedAt(Instant.now());
-        order.setIsDelivered(false);
+        if (order.getOrderedAt() == null) {
+            order.setOrderedAt(Instant.now());
+        }
+        if (order.getIsDelivered() == null) {
+            order.setIsDelivered(false);
+        }
 
         Order savedOrder = orderRepository.save(order);
 
         for (OrderDet orderDet : orderDetails) {
-            Product product = productRepository.findById(orderDet.getProduct().getId())
-                    .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+            Product product = productRepository
+                .findById(orderDet.getProduct().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
             if (product.getStock() < orderDet.getQuantity()) {
                 throw new IllegalArgumentException("Product out of stock");
             }
@@ -117,8 +122,9 @@ public class OrderService {
         for (Order order : orders) {
             List<OrderDet> orderDetails = orderDetRepository.findByOrderId(order.getId());
             orderDetails.forEach(orderDet -> {
-                Product product = productRepository.findById(orderDet.getProduct().getId())
-                        .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+                Product product = productRepository
+                    .findById(orderDet.getProduct().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Product not found"));
                 orderDet.setProduct(product);
             });
             order.setOrderDetails(Set.copyOf(orderDetails));

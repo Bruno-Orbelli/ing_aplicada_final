@@ -14,6 +14,8 @@ export const defaultConfig = {
   env: {
     authenticationUrl: '/api/authenticate',
     jwtStorageName: 'jhi-authenticationToken',
+    E2E_USERNAME: 'admin',
+    E2E_PASSWORD: 'admin',
   },
   e2e: {
     // We've imported your old cypress plugins here.

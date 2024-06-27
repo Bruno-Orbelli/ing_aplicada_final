@@ -9,7 +9,7 @@ import { AppContext } from './Context';
 const OrderConfirmationModal = ({ items, getOrders }) => {
   const { showModal, setShowModal, resetSelectedCounters } = useContext(AppContext);
 
-  const calculateSubtotal = (item) => {
+  const calculateSubtotal = item => {
     return item.price * item.selectedCounter;
   };
 
@@ -20,7 +20,7 @@ const OrderConfirmationModal = ({ items, getOrders }) => {
   const handleProceed = async () => {
     const orderDetails = items.map(item => ({
       quantity: item.selectedCounter,
-      product: { id: item.id }
+      product: { id: item.id },
     }));
 
     const token = sessionStorage.getItem('jhi-authenticationToken');
@@ -29,20 +29,41 @@ const OrderConfirmationModal = ({ items, getOrders }) => {
     const clientName = decodedToken.sub;
     const order = {
       clientName: clientName,
-      orderDetails: orderDetails
+      orderDetails: orderDetails,
     };
 
     try {
       const response = await axios.post(`${APP_ORDER_URL}`, order);
       if (response.status === 201) {
-        swal.fire('Success', 'Order placed successfully', 'success');
+        swal.fire({
+          title: 'Success',
+          text: 'Order placed successfully',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+          position: 'bottom-start',
+        });
         resetSelectedCounters();
         getOrders();
       } else {
-        swal.fire('Error', 'There was an error placing the order', 'error');
+        swal.fire({
+          title: 'Error',
+          text: 'There was an error placing the order',
+          icon: 'error',
+          timer: 2000,
+          showConfirmButton: false,
+          position: 'bottom-start',
+        });
       }
     } catch (error) {
-      swal.fire('Error', 'There was an error placing the order', 'error');
+      swal.fire({
+        title: 'Error',
+        text: 'There was an error placing the order',
+        icon: 'error',
+        timer: 2000,
+        showConfirmButton: false,
+        position: 'bottom-start',
+      });
     } finally {
       setShowModal(false);
     }
@@ -64,8 +85,12 @@ const OrderConfirmationModal = ({ items, getOrders }) => {
         <p>Would you like to proceed?</p>
       </ModalBody>
       <ModalFooter>
-        <Button color="success" onClick={handleProceed}>Yes, proceed</Button>{' '}
-        <Button color="secondary" onClick={() => setShowModal(false)}>No, go back</Button>
+        <Button color="success" onClick={handleProceed} data-cy="modalConfirmOrderButton">
+          Yes, proceed
+        </Button>{' '}
+        <Button color="secondary" onClick={() => setShowModal(false)}>
+          No, go back
+        </Button>
       </ModalFooter>
     </Modal>
   );

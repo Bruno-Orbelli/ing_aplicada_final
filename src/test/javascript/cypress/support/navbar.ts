@@ -11,6 +11,7 @@ import {
   settingsItemSelector,
   passwordItemSelector,
   entityItemSelector,
+  mainItemSelector,
 } from './commands';
 
 Cypress.Commands.add('clickOnLoginItem', () => {
@@ -41,6 +42,10 @@ Cypress.Commands.add('clickOnEntityMenuItem', (entityName: string) => {
   return cy.get(navbarSelector).get(entityItemSelector).click().get(`.dropdown-item[href="/${entityName}"]`).click();
 });
 
+Cypress.Commands.add('clickOnMainItem', () => {
+  return cy.get(navbarSelector).get(mainItemSelector).click();
+});
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -51,6 +56,7 @@ declare global {
       clickOnPasswordItem(): Cypress.Chainable;
       clickOnAdminMenuItem(item: string): Cypress.Chainable;
       clickOnEntityMenuItem(entityName: string): Cypress.Chainable;
+      clickOnMainItem(): Cypress.Chainable;
     }
   }
 }

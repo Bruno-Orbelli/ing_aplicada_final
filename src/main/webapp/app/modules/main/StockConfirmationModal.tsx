@@ -21,16 +21,29 @@ interface Props {
 
 const StockConfirmationModal: React.FC<Props> = ({ items, updateStock }) => {
   const { showModal, setShowModal, resetStockCounters } = useContext(AppContext);
-  
+
   const handleProceed = async () => {
     items.forEach(async item => {
       const response = await axios.patch(`${APP_PRODUCT_URL}/${item.id}`, { id: item.id, stock: item.initialStock + item.stockCounter });
       if (response.status !== 200) {
-        Swal.fire('Error', 'There was an error updating the stock', 'error');
+        Swal.fire({
+          title: 'Error',
+          text: 'There was an error updating the stock',
+          icon: 'error',
+          timer: 2000,
+          showConfirmButton: false,
+          position: 'bottom-start',
+        });
       }
     });
-    Swal.fire('Success', 'Stock updated successfully', 'success');
-
+    Swal.fire({
+      title: 'Success',
+      text: 'Stock updated successfully',
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+      position: 'bottom-start',
+    });
     resetStockCounters();
     updateStock();
     setShowModal(false);
@@ -55,7 +68,7 @@ const StockConfirmationModal: React.FC<Props> = ({ items, updateStock }) => {
         <p>Would you like to proceed?</p>
       </ModalBody>
       <ModalFooter>
-        <Button color="success" onClick={handleProceed}>
+        <Button color="success" onClick={handleProceed} data-cy="modalConfirmStockButton">
           Yes, proceed
         </Button>{' '}
         <Button color="secondary" onClick={handleGoBack}>

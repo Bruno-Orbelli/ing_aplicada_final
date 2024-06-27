@@ -17,3 +17,4 @@ import './commands';
 import './navbar';
 import './entity';
 import './management';
+import './main';

@@ -29,7 +29,7 @@ export const Home = () => (
 
 export const Main = () => (
   <NavItem>
-    <NavLink tag={Link} to="/main" className="d-flex align-items-center">
+    <NavLink tag={Link} to="/main" className="d-flex align-items-center" data-cy="mainItem">
       <FontAwesomeIcon icon="utensils" />
       <span>GreatBurgers</span>
     </NavLink>

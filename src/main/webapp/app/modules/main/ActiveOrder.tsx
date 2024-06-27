@@ -28,13 +28,8 @@ const ActiveOrder: React.FC<ActiveOrderProps> = ({ order }) => {
   };
 
   return (
-    <div className="active-order" onClick={handleClick}>
-      <img
-        key={order.id}
-        src="../../content/images/order.webp"
-        alt={`Order ${order.id}`}
-        className="order-image"
-      />
+    <div className="active-order" data-cy={order.id + 'ActiveOrder'} onClick={handleClick}>
+      <img key={order.id} src="../../content/images/order.webp" alt={`Order ${order.id}`} className="order-image" />
     </div>
   );
 };

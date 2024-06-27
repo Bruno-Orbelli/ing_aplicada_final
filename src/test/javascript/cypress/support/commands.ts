@@ -27,6 +27,7 @@ export const passwordItemSelector = '[data-cy="passwordItem"]';
 export const loginItemSelector = '[data-cy="login"]';
 export const logoutItemSelector = '[data-cy="logout"]';
 export const entityItemSelector = '[data-cy="entity"]';
+export const mainItemSelector = '[data-cy="mainItem"]';
 
 // Login
 export const titleLoginSelector = '[data-cy="loginTitle"]';
@@ -69,6 +70,24 @@ export const metricsPageHeadingSelector = '[data-cy="metricsPageHeading"]';
 export const healthPageHeadingSelector = '[data-cy="healthPageHeading"]';
 export const logsPageHeadingSelector = '[data-cy="logsPageHeading"]';
 export const configurationPageHeadingSelector = '[data-cy="configurationPageHeading"]';
+
+// Main
+export const logoSelector = '[data-cy="logo"]';
+export const goBackSelector = '[data-cy="goBackButton"]';
+export const newItemTabButtonSelector = '[id="navTabs-tab-new-order"]';
+export const activeOrdersTabButtonSelector = '[id="navTabs-tab-current-orders"]';
+export const stockTabButtonSelector = '[id="navTabs-tab-stock"]';
+export const activeOrderSuffix = 'ActiveOrder';
+export const selectedCountSuffix = 'SelectedCount';
+export const stockCountSuffix = 'StockCount';
+export const productPlusButtonSuffix = 'ProductPlusButton';
+export const productMinusButtonSuffix = 'ProductMinusButton';
+export const stockPlusButtonSuffix = 'StockPlusButton';
+export const stockMinusButtonSuffix = 'StockMinusButton';
+export const confirmOrderButtonSelector = '[data-cy="confirmOrderButton"]';
+export const modalConfirmOrderButtonSelector = '[data-cy="modalConfirmOrderButton"]';
+export const confirmStockButtonSelector = '[data-cy="confirmStockButton"]';
+export const modalConfirmStockButtonSelector = '[data-cy="modalConfirmStockButton"]';
 
 // ***********************************************
 // End Specific Selector Attributes for Cypress
