@@ -10,18 +10,18 @@ const AppProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [activeTab, setActiveTab] = useState('new-order');
-  
-  const getFoodItems = async () => {
+
+  const getFoodItems = () => {
     try {
       const imageMapping = {
-        'Burger': '../../content/images/burger.webp',
+        Burger: '../../content/images/burger.webp',
         'French Fries': '../../content/images/french-fries.png',
-        'Salad': '../../content/images/salad.png',
-        'Soda': '../../content/images/soda.webp',
+        Salad: '../../content/images/salad.png',
+        Soda: '../../content/images/soda.webp',
         'Ice Cream': '../../content/images/ice-cream.webp',
-      };   
+      };
       axios.get(APP_PRODUCT_URL).then(response => {
-        const foodItems = response.data.map((item) => ({
+        const newFoodItems = response.data.map(item => ({
           id: item.id,
           name: item.productName,
           description: item.description,
@@ -31,18 +31,17 @@ const AppProvider = ({ children }) => {
           initialStock: item.stock,
           stockCounter: 0,
         }));
-        setFoodItems(foodItems);
-        console.log(foodItems);
+        setFoodItems(newFoodItems);
       });
     } catch (error) {
       console.error('Error fetching food items:', error);
     }
-  }
-  
-  const getOrderItems = async () => {
+  };
+
+  const getOrderItems = () => {
     try {
       axios.get(APP_ORDER_URL).then(response => {
-        const newOrderItems = response.data.map((item) => ({
+        const newOrderItems = response.data.map(item => ({
           id: item.id,
           clientName: item.clientName,
           orderedAt: item.orderedAt,
@@ -56,27 +55,21 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.error('Error fetching order items:', error);
     }
-  }
-  
+  };
+
   const updateStock = () => {
-    setFoodItems(prevItems =>
-      prevItems.map(item => ({ ...item, initialStock: item.initialStock + item.stockCounter }))
-    );
-  }
-  
+    setFoodItems(prevItems => prevItems.map(item => ({ ...item, initialStock: item.initialStock + item.stockCounter })));
+  };
+
   const resetSelectedCounters = () => {
-    setFoodItems(prevItems =>
-      prevItems.map(item => ({ ...item, selectedCounter: 0 }))
-    );
+    setFoodItems(prevItems => prevItems.map(item => ({ ...item, selectedCounter: 0 })));
   };
 
   const resetStockCounters = () => {
-    setFoodItems(prevItems =>
-      prevItems.map(item => ({ ...item, stockCounter: 0 }))
-    );
+    setFoodItems(prevItems => prevItems.map(item => ({ ...item, stockCounter: 0 })));
   };
 
-  const removeOrder = (orderId) => {
+  const removeOrder = orderId => {
     setOrderItems(prevOrders => prevOrders.filter(order => order.id !== orderId));
   };
 
@@ -86,7 +79,7 @@ const AppProvider = ({ children }) => {
         foodItems,
         setFoodItems,
         orderItems,
-        setOrderItems,// OrderInformationModal.tsx
+        setOrderItems, // OrderInformationModal.tsx
         showModal,
         setShowModal,
         activeTab,

@@ -9,6 +9,11 @@
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>172.17.0.1:50000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
 <!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
 <!--
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -26,11 +31,11 @@
         <queueSize>512</queueSize>
         <appender-ref ref="FILE"/>
     </appender>
+-->
 
     <root level="${logging.level.root}">
-        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="LOGSTASH"/>
     </root>
--->
 
     <logger name="javax.activation" level="WARN"/>
     <logger name="javax.mail" level="WARN"/>

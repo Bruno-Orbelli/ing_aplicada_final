@@ -31,7 +31,7 @@ const MyTabs = () => {
     updateStock,
   } = useContext(AppContext);
 
-  const getFoodItems = async () => {
+  const getFoodItems = () => {
     try {
       const imageMapping = {
         Burger: '../../content/images/burger.webp',
@@ -41,7 +41,7 @@ const MyTabs = () => {
         'Ice Cream': '../../content/images/ice-cream.webp',
       };
       axios.get(APP_PRODUCT_URL).then(response => {
-        const foodItems = response.data.map(item => ({
+        const newFoodItems = response.data.map(item => ({
           id: item.id,
           name: item.productName,
           description: item.description,
@@ -51,15 +51,14 @@ const MyTabs = () => {
           initialStock: item.stock,
           stockCounter: 0,
         }));
-        setFoodItems(foodItems);
-        console.log(foodItems);
+        setFoodItems(newFoodItems);
       });
     } catch (error) {
       console.error('Error fetching food items:', error);
     }
   };
 
-  const getOrderItems = async () => {
+  const getOrderItems = () => {
     try {
       axios.get(APP_ORDER_URL).then(response => {
         const newOrderItems = response.data.map(item => ({

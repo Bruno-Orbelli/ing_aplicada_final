@@ -4,28 +4,28 @@ import './OrderItemCard.css';
 
 export default function OrderItemCard(props: { name: string }) {
   const { foodItems, setFoodItems } = useContext(AppContext);
-  var item = foodItems.find(item => item.name === props.name);
+  let item = foodItems.find(elem => elem.name === props.name);
 
   const handlePlusButtonClick = () => {
-    const newFoodItems = foodItems.map(item => {
-      if (item.name === props.name) {
-        return { ...item, selectedCounter: item.selectedCounter + 1 };
+    const newFoodItems = foodItems.map(elem => {
+      if (elem.name === props.name) {
+        return { ...elem, selectedCounter: elem.selectedCounter + 1 };
       }
-      return item;
+      return elem;
     });
     setFoodItems(newFoodItems);
-    item = newFoodItems.find(item => item.name === props.name);
+    item = newFoodItems.find(elem => elem.name === props.name);
   };
 
   const handleMinusButtonClick = () => {
-    const newFoodItems = foodItems.map(item => {
-      if (item.name === props.name) {
-        return { ...item, selectedCounter: Math.max(0, item.selectedCounter - 1) };
+    const newFoodItems = foodItems.map(elem => {
+      if (elem.name === props.name) {
+        return { ...elem, selectedCounter: Math.max(0, elem.selectedCounter - 1) };
       }
-      return item;
+      return elem;
     });
     setFoodItems(newFoodItems);
-    item = newFoodItems.find(item => item.name === props.name);
+    item = newFoodItems.find(elem => elem.name === props.name);
   };
 
   return (

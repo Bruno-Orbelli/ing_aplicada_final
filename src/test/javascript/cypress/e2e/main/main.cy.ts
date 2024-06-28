@@ -2,7 +2,6 @@ import {
   newItemTabButtonSelector,
   activeOrdersTabButtonSelector,
   stockTabButtonSelector,
-  activeOrderSuffix,
   selectedCountSuffix,
   stockCountSuffix,
   productPlusButtonSuffix,

@@ -16,16 +16,27 @@ interface Props {
     stockCounter: number;
     image: string;
   }>;
-  updateStock: Function;
+  updateStock: () => void;
 }
 
 const StockConfirmationModal: React.FC<Props> = ({ items, updateStock }) => {
   const { showModal, setShowModal, resetStockCounters } = useContext(AppContext);
 
   const handleProceed = async () => {
-    items.forEach(async item => {
-      const response = await axios.patch(`${APP_PRODUCT_URL}/${item.id}`, { id: item.id, stock: item.initialStock + item.stockCounter });
-      if (response.status !== 200) {
+    for (const item of items) {
+      try {
+        const response = await axios.patch(`${APP_PRODUCT_URL}/${item.id}`, { id: item.id, stock: item.initialStock + item.stockCounter });
+        if (response.status !== 200) {
+          Swal.fire({
+            title: 'Error',
+            text: 'There was an error updating the stock',
+            icon: 'error',
+            timer: 2000,
+            showConfirmButton: false,
+            position: 'bottom-start',
+          });
+        }
+      } catch (error) {
         Swal.fire({
           title: 'Error',
           text: 'There was an error updating the stock',
@@ -35,18 +46,14 @@ const StockConfirmationModal: React.FC<Props> = ({ items, updateStock }) => {
           position: 'bottom-start',
         });
       }
-    });
-    Swal.fire({
-      title: 'Success',
-      text: 'Stock updated successfully',
-      icon: 'success',
-      timer: 2000,
-      showConfirmButton: false,
-      position: 'bottom-start',
-    });
+    }
     resetStockCounters();
     updateStock();
     setShowModal(false);
+  };
+
+  const handleProceedWrapper = () => {
+    handleProceed();
   };
 
   const handleGoBack = () => {
@@ -68,7 +75,7 @@ const StockConfirmationModal: React.FC<Props> = ({ items, updateStock }) => {
         <p>Would you like to proceed?</p>
       </ModalBody>
       <ModalFooter>
-        <Button color="success" onClick={handleProceed} data-cy="modalConfirmStockButton">
+        <Button color="success" onClick={handleProceedWrapper} data-cy="modalConfirmStockButton">
           Yes, proceed
         </Button>{' '}
         <Button color="secondary" onClick={handleGoBack}>

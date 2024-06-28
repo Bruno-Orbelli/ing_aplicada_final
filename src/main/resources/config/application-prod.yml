@@ -14,10 +14,16 @@
 # ===================================================================
 
 logging:
-  level:
-    ROOT: INFO
-    tech.jhipster: INFO
-    com.finalaplicada.greatburgers: INFO
+  use-json-format: false
+  logstash:
+    enabled: true
+    host: 172.17.0.1
+    port: 50000
+    queue-size: 512
+  # level:
+  # ROOT: INFO
+  # tech.jhipster: INFO
+  # com.finalaplicada.greatburgers: INFO
 
 management:
   metrics:
@@ -93,6 +99,16 @@ jhipster:
     ehcache: # Ehcache configuration
       time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
       max-entries: 1000 # Number of objects in each cache entry
+  cors:
+    # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
+    allowed-origins: 'http://localhost:8100,https://localhost:8100,http://localhost:9000,https://localhost:9000,http://localhost:9060,https://localhost:9060,http://localhost:5173,http://localhost:4173/'
+    # Enable CORS when running in GitHub Codespaces
+    allowed-origin-patterns: 'https://*.githubpreview.dev'
+    allowed-methods: '*'
+    allowed-headers: '*'
+    exposed-headers: 'Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params'
+    allow-credentials: true
+    max-age: 1800
   security:
     authentication:
       jwt:

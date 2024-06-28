@@ -28,8 +28,8 @@ const OrderConfirmationModal = ({ items, getOrders }) => {
 
     const clientName = decodedToken.sub;
     const order = {
-      clientName: clientName,
-      orderDetails: orderDetails,
+      clientName,
+      orderDetails,
     };
 
     try {
@@ -67,6 +67,11 @@ const OrderConfirmationModal = ({ items, getOrders }) => {
     } finally {
       setShowModal(false);
     }
+    return;
+  };
+
+  const handleProceedWrapper = () => {
+    handleProceed();
   };
 
   return (
@@ -85,7 +90,7 @@ const OrderConfirmationModal = ({ items, getOrders }) => {
         <p>Would you like to proceed?</p>
       </ModalBody>
       <ModalFooter>
-        <Button color="success" onClick={handleProceed} data-cy="modalConfirmOrderButton">
+        <Button color="success" onClick={handleProceedWrapper} data-cy="modalConfirmOrderButton">
           Yes, proceed
         </Button>{' '}
         <Button color="secondary" onClick={() => setShowModal(false)}>

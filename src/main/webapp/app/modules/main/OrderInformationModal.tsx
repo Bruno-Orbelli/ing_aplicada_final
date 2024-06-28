@@ -9,7 +9,11 @@ const OrderInformationModal: React.FC = () => {
   const { selectedOrder, setSelectedOrder, showModal, setShowModal, removeOrder } = useContext(AppContext);
 
   const handleMarkAsDelivered = async () => {
-    const response = await axios.patch(`${APP_ORDER_URL}/${selectedOrder.id}`, { id: selectedOrder.id, isDelivered: true, deliveredAt: new Date() });
+    const response = await axios.patch(`${APP_ORDER_URL}/${selectedOrder.id}`, {
+      id: selectedOrder.id,
+      isDelivered: true,
+      deliveredAt: new Date(),
+    });
     if (response.status !== 200) {
       Swal.fire('Error', 'There was an error updating the order', 'error');
       setShowModal(false);
@@ -19,6 +23,10 @@ const OrderInformationModal: React.FC = () => {
     removeOrder(selectedOrder.id);
     setSelectedOrder(null);
     setShowModal(false);
+  };
+
+  const handleMarkAsDeliveredWrapper = () => {
+    handleMarkAsDelivered();
   };
 
   if (!selectedOrder) return null;
@@ -31,7 +39,7 @@ const OrderInformationModal: React.FC = () => {
         <p>Client Name: {selectedOrder.clientName}</p>
         <p>Ordered At: {new Date(selectedOrder.orderedAt).toLocaleString()}</p>
         {selectedOrder.isDelivered ? (
-          <p>Delivered At: {new Date(selectedOrder.deliveredAt!).toLocaleString()}</p>
+          <p>Delivered At: {new Date(selectedOrder.deliveredAt).toLocaleString()}</p>
         ) : (
           <p>Status: Not delivered yet</p>
         )}
@@ -45,7 +53,7 @@ const OrderInformationModal: React.FC = () => {
         </ul>
       </ModalBody>
       <ModalFooter>
-        <Button color="success" onClick={handleMarkAsDelivered}>
+        <Button color="success" onClick={handleMarkAsDeliveredWrapper}>
           Mark as delivered
         </Button>{' '}
       </ModalFooter>
