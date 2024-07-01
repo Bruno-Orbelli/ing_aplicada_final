@@ -3,8 +3,8 @@ version: '3.8'
 services:
   final_aplicada-postgresql:
     image: postgres:14.5
-    # volumes:
-    #   - ~/volumes/jhipster/final_aplicada/postgresql/:/var/lib/postgresql/data/
+    volumes:
+      - ~/volumes/jhipster/final_aplicada/postgresql/:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=final_aplicada
       - POSTGRES_PASSWORD=

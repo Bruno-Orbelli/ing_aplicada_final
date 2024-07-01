@@ -15,8 +15,8 @@ import {
 } from '../../support/commands';
 
 describe('/main', () => {
-  const username = Cypress.env('E2E_USERNAME') ?? 'admin';
-  const password = Cypress.env('E2E_PASSWORD') ?? 'admin';
+  const username = Cypress.env('E2E_ADMIN_USERNAME') ?? 'admin';
+  const password = Cypress.env('E2E_ADMIN_PASSWORD') ?? 'admin';
 
   beforeEach(() => {
     cy.visit('');
@@ -61,17 +61,23 @@ describe('/main', () => {
   it('should allow to create an order', () => {
     cy.login(username, password);
     cy.visit('/main');
-    const selectors = ['burger', 'frenchfries', 'salad', 'soda', 'icecream'];
-    selectors.forEach(selector => {
-      cy.get(`[data-cy="${selector + productPlusButtonSuffix}"]`).click();
-    });
-    cy.get(confirmOrderButtonSelector).click();
-    cy.get(modalConfirmOrderButtonSelector).click();
-    cy.get(activeOrdersTabButtonSelector, { timeout: 20000 }).should('be.visible').click();
-    cy.get('.active-order').should('have.length', 1);
-    selectors.forEach(selector => {
-      cy.get(`[data-cy="${selector + selectedCountSuffix}"]`).should('have.text', '0');
-    });
+    cy.get(activeOrdersTabButtonSelector).click();
+    cy.get('.active-order')
+      .its('length')
+      .then((initialOrderCount: number) => {
+        cy.get(newItemTabButtonSelector).click();
+        const selectors = ['burger', 'frenchfries', 'salad', 'soda', 'icecream'];
+        selectors.forEach(selector => {
+          cy.get(`[data-cy="${selector + productPlusButtonSuffix}"]`).click();
+        });
+        cy.get(confirmOrderButtonSelector).click();
+        cy.get(modalConfirmOrderButtonSelector).click();
+        cy.get(activeOrdersTabButtonSelector, { timeout: 20000 }).should('be.visible').click();
+        cy.get('.active-order').should('have.length', initialOrderCount + 1);
+        selectors.forEach(selector => {
+          cy.get(`[data-cy="${selector + selectedCountSuffix}"]`).should('have.text', '0');
+        });
+      });
   });
 
   it("should allow to increment and decrement stock' counter", () => {

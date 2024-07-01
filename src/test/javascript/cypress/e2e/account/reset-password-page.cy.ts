@@ -8,7 +8,7 @@ import {
 } from '../../support/commands';
 
 describe('forgot your password', () => {
-  const username = Cypress.env('E2E_USERNAME') ?? 'user';
+  const username = Cypress.env('E2E_NORMAL_USERNAME') ?? 'user';
 
   beforeEach(() => {
     cy.visit('');

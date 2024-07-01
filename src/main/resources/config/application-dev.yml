@@ -17,7 +17,7 @@ logging:
   use-json-format: false
   logstash:
     enabled: true
-    host: 172.17.0.1
+    host: 127.0.0.1
     port: 50000
     queue-size: 512
   # level:

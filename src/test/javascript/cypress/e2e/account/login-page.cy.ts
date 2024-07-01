@@ -7,8 +7,8 @@ import {
 } from '../../support/commands';
 
 describe('login modal', () => {
-  const username = Cypress.env('E2E_USERNAME') ?? 'user';
-  const password = Cypress.env('E2E_PASSWORD') ?? 'user';
+  const username = Cypress.env('E2E_NORMAL_USERNAME') ?? 'user';
+  const password = Cypress.env('E2E_NORMAL_PASSWORD') ?? 'user';
 
   beforeEach(() => {
     cy.visit('');
